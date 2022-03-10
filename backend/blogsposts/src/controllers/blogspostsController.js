@@ -34,7 +34,9 @@ exports.get = async (request, reply) => {
         const blogpost = blogposts.result[i]
         if (blogpost.image) {
           const params = blogpost.image.replace('https://pcm.groupclaes.be/v3/content/', '').split('/')
-          blogpost.meta = await pcm.getMetaInformation(params[0], params[1], params[2], params[3])
+          const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3])
+          if (metas && metas.length > 0)
+            blogpost.meta = metas[0]
         }
       }
 
