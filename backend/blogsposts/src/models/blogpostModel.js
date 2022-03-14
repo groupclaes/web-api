@@ -14,7 +14,8 @@ exports.get = async (id, params) => {
         return {
           error: result.recordset[0].e,
           verified: result.recordset[0].v,
-          result: result.recordsets[1][0] || []
+          result: result.recordsets.length > 1 ? result.recordsets[1][0] : [],
+          extra_results: result.recordsets.length > 2 ? result.recordsets[2][0] : []
         }
       }
     }
@@ -28,7 +29,7 @@ exports.get = async (id, params) => {
     return {
       error: result.recordset[0].e,
       verified: result.recordset[0].v,
-      result: result.recordsets[1][0] || []
+      result: result.recordsets.length > 1 ? result.recordsets[1][0] : []
     }
   } catch (err) {
     throw err

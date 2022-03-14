@@ -39,6 +39,18 @@ exports.get = async (request, reply) => {
             blogpost.meta = metas[0]
         }
       }
+      if (blogposts.extra_results) {
+        // get meta info for all extra results
+        for (let i = 0; i < blogposts.extra_results.length; i++) {
+          const blogpost = blogposts.extra_results[i]
+          if (blogpost.image) {
+            const params = blogpost.image.replace('https://pcm.groupclaes.be/v3/content/', '').split('/')
+            const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3])
+            if (metas && metas.length > 0)
+              blogpost.meta = metas[0]
+          }
+        }
+      }
 
       return blogposts
     } else {
