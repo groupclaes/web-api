@@ -1,0 +1,21 @@
+{
+  "name": "web-api-openedge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "author": {
+    "name": "Jamie Vangeysel",
+    "email": "jamie.vangeysel@groupclaes.be",
+    "url": "https://jamievangeysel.be"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "@groupclaes/fastify-elastic": "^1.0.10",
+    "@groupclaes/oe-connector": "^1.0.10"
+  }
+}
