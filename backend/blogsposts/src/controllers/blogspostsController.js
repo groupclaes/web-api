@@ -33,10 +33,12 @@ exports.get = async (request, reply) => {
       for (let i = 0; i < blogposts.result.length; i++) {
         const blogpost = blogposts.result[i]
         if (blogpost.image) {
-          const params = blogpost.image.replace('https://pcm.groupclaes.be/v3/content/', '').split('/')
-          const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3])
-          if (metas && metas.length > 0)
-            blogpost.meta = metas[0]
+          const params = blogpost.image.replace('https://pcm.groupclaes.be/v3/i/', '').replace('https://pcm.groupclaes.be/v3/content/', '').split('/')
+          if (params.length >= 4) {
+            const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3])
+            if (metas && metas.length > 0)
+              blogpost.meta = metas[0]
+          }
         }
       }
       if (blogposts.extra_results) {
@@ -44,10 +46,12 @@ exports.get = async (request, reply) => {
         for (let i = 0; i < blogposts.extra_results.length; i++) {
           const blogpost = blogposts.extra_results[i]
           if (blogpost.image) {
-            const params = blogpost.image.replace('https://pcm.groupclaes.be/v3/content/', '').split('/')
-            const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3])
-            if (metas && metas.length > 0)
-              blogpost.meta = metas[0]
+            const params = blogpost.image.replace('https://pcm.groupclaes.be/v3/i/', '').replace('https://pcm.groupclaes.be/v3/content/', '').split('/')
+            if (params.length >= 4) {
+              const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3])
+              if (metas && metas.length > 0)
+                blogpost.meta = metas[0]
+            }
           }
         }
       }
