@@ -20,13 +20,19 @@ exports.get = async (request, reply) => {
     const company = request.query.company || 'dis'
     const type = +request.query.type || 1
 
+    const token = request.query.token
+
     if (!id) {
       request.log.info({ page, itemCount, company, type }, 'Retrieving all blogposts')
     } else {
       request.log.info({ blogpostId: id }, 'Retrieving single blogpost')
     }
 
-    const blogposts = await Blogpost.get(id, { page, itemCount, company, type })
+    if (token) {
+      request.log.warn({ token }, 'user supplied token!')
+    }
+
+    const blogposts = await Blogpost.get(id, { page, itemCount, company, type, token })
 
     if (blogposts.verified) {
       // get meta info for all blogposts

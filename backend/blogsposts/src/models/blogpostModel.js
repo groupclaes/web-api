@@ -8,8 +8,14 @@ exports.get = async (id, params) => {
 
     if (id) {
       request.input('id', sql.Int, id)
+      let sqlCommand = `EXEC GetBlogPost @id`
 
-      const result = await request.query(`EXEC GetBlogPost @id`)
+      if (params.token) {
+        sqlCommand += `, @token`
+        request.input('token', sql.UniqueIdentifier, params.token)
+      }
+
+      const result = await request.query(sqlCommand)
       if (result && result.recordsets.length > 0) {
         return {
           error: result.recordset[0].e,
