@@ -16,14 +16,21 @@ exports.get = async (id, params) => {
       }
 
       const result = await request.query(sqlCommand)
-      if (result && result.recordsets.length > 0) {
+      const { error, verified } = result.recordset[0]
+
+      if (error) {
+        return { error, verified}
+      } else if (result && result.recordsets.length > 0) {
         return {
-          error: result.recordset[0].e,
-          verified: result.recordset[0].v,
+          error,
+          verified,
           result: result.recordsets.length > 1 ? result.recordsets[1][0] : [],
           extra_results: result.recordsets.length > 2 ? result.recordsets[2][0] : []
         }
       }
+      return reply
+        .code(500)
+        .send()
     }
 
     request.input('page', sql.Int, params.page)
