@@ -1,10 +1,9 @@
 const sql = require('mssql')
-const { poolAsync } = require('../db')
+const db = require('../db')
 
 exports.get = async (id, params) => {
   try {
-    const pool = await poolAsync
-    const request = new sql.Request(pool)
+    const request = new sql.Request(await db.get('sapphire'))
 
     if (id) {
       request.input('id', sql.Int, id)
