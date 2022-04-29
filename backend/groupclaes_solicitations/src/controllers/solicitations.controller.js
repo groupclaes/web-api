@@ -28,7 +28,7 @@ exports.post = async (request, reply) => {
 
     const subject = `Sollicitatie ${prename} ${surname}`
     const recipients = [
-      'it@groupclaes.be'
+      'hr@groupclaes.be'
     ]
     let body = Solicitation.getMailTemplate('solicitation', 'nl')
     body = body
