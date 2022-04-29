@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  v1_groupclaes_vacancies:
+    image: docker-registry.groupclaes.be/groupclaes_web-api-groupclaes_vacancies
+    environment:
+      APP_VERSION: v1
+      NODE_ENV: production
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints: [node.labels.worker == true]
+      resources:
+        reservations:
+          memory: 20M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.growebapi-gro-vacancies.rule=Host(`api.groupclaes.be`) && PathPrefix(`/v1/groupclaes/vacancies`)"
+        - "traefik.http.routers.growebapi-gro-vacancies.entrypoints=web"
+        - "traefik.http.services.growebapi-gro-vacancies.loadbalancer.server.port=80"
+    configs:
+      - source: groupclaes_web-api-groupclaes_vacancies
+        target: /usr/src/app/config.js
+    networks:
+      - traefik_web
+      - logging
+      - default
+
+configs:
+  groupclaes_web-api-groupclaes_vacancies:
+    external: true
+
+networks:
+  traefik_web:
+    external: true
+  logging:
+    external: true

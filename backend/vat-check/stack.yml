@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  vat-check:
+    image: docker-registry.groupclaes.be/groupclaes_web-api-vat-check
+    environment:
+      APP_VERSION: v3
+      NODE_ENV: production
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints: [node.labels.worker == true]
+      resources:
+        reservations:
+          memory: 20M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.groweb-api-vat-check.rule=Host(`api.groupclaes.be`) && PathPrefix(`/v1/vat-check`)"
+        - "traefik.http.routers.groweb-api-vat-check.entrypoints=web"
+        - "traefik.http.services.groweb-api-vat-check.loadbalancer.server.port=80"
+    configs:
+      - source: groupclaes_web-api-vat-check
+        target: /usr/src/app/config.js
+    networks:
+      - traefik_web
+      - logging
+      - default
+
+configs:
+  groupclaes_web-api-vat-check:
+    external: true
+
+networks:
+  traefik_web:
+    external: true
+  logging:
+    external: true

@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  v1_groupclaes_client-map:
+    image: docker-registry.groupclaes.be/groupclaes_web-api-groupclaes_client-map
+    environment:
+      APP_VERSION: v1
+      NODE_ENV: production
+    volumes:
+      - type: volume
+        source: vol_public
+        target: /public
+        volume:
+          nocopy: true
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints: [node.labels.worker == true]
+      resources:
+        reservations:
+          memory: 20M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.growebapi-gro-client-map.rule=Host(`api.groupclaes.be`) && PathPrefix(`/v1/groupclaes/client-map`)"
+        - "traefik.http.routers.growebapi-gro-client-map.entrypoints=web"
+        - "traefik.http.services.growebapi-gro-client-map.loadbalancer.server.port=80"
+    configs:
+      - source: groupclaes_web-api-groupclaes_client-map
+        target: /usr/src/app/config.js
+    networks:
+      - traefik_web
+      - logging
+      - default
+
+configs:
+  groupclaes_web-api-groupclaes_client-map:
+    external: true
+
+volumes:
+  vol_public:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: addr=172.18.11.70,nolock,soft,rw
+      device: ":/mnt/public"
+
+networks:
+  traefik_web:
+    external: true
+  logging:
+    external: true
