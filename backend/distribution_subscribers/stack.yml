@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  v1_distribution_subscribers:
+    image: docker-registry.groupclaes.be/groupclaes_web-api-distribution_subscribers
+    environment:
+      APP_VERSION: v1
+      NODE_ENV: production
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints: [node.labels.worker == true]
+      resources:
+        reservations:
+          memory: 20M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.growebapi-dis_subscribers.rule=Host(`api.groupclaes.be`) && PathPrefix(`/v1/distribution/subscribers`)"
+        - "traefik.http.routers.growebapi-dis_subscribers.entrypoints=web"
+        - "traefik.http.services.growebapi-dis_subscribers.loadbalancer.server.port=80"
+    configs:
+      - source: groupclaes_web-api-distribution_subscribers
+        target: /usr/src/app/config.js
+    networks:
+      - traefik_web
+      - logging
+      - default
+
+configs:
+  groupclaes_web-api-distribution_subscribers:
+    external: true
+
+networks:
+  traefik_web:
+    external: true
+  logging:
+    external: true
