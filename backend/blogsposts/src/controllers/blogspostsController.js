@@ -37,32 +37,12 @@ exports.get = async (request, reply) => {
     if (blogposts.verified) {
       // get meta info for all blogposts
       for (let i = 0; i < blogposts.result.length; i++) {
-        const blogpost = blogposts.result[i]
-        if (blogpost.image) {
-          const params = blogpost.image.replace('https://pcm.groupclaes.be/v3/i/', '')
-            .replace('https://pcm.groupclaes.be/v3/content/', '')
-            .split('/')
-          if (params.length >= 4) {
-            const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3].replace('?', ''))
-            if (metas && metas.length > 0)
-              blogpost.meta = metas[0]
-          }
-        }
+        factory(blogposts.result[i])
       }
       if (blogposts.extra_results) {
         // get meta info for all extra results
         for (let i = 0; i < blogposts.extra_results.length; i++) {
-          const blogpost = blogposts.extra_results[i]
-          if (blogpost.image) {
-            const params = blogpost.image.replace('https://pcm.groupclaes.be/v3/i/', '')
-              .replace('https://pcm.groupclaes.be/v3/content/', '')
-              .split('/')
-            if (params.length >= 4) {
-              const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3].replace('?', ''))
-              if (metas && metas.length > 0)
-                blogpost.meta = metas[0]
-            }
-          }
+          factory(blogposts.extra_results[i])
         }
       }
 
@@ -79,5 +59,20 @@ exports.get = async (request, reply) => {
     }
   } catch (err) {
     throw boom.boomify(err)
+  }
+}
+
+const factory = (blogpost) => {
+  if (!blogpost.image)
+    return
+
+  /** @type {string} */
+  const image = blogpost.image.replace('https://pcm.groupclaes.be/v3/i/', '')
+    .replace('https://pcm.groupclaes.be/v3/content/', '')
+  const params = image.split('/')
+  if (params.length >= 4) {
+    const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3].replace('?', ''))
+    if (metas && metas.length > 0)
+      blogpost.meta = metas[0]
   }
 }
