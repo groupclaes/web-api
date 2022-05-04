@@ -105,3 +105,8 @@ dist
 
 #configuration files
 config.js
+data.json
+*.e2e.js
+
+# Feggin macs
+.DS_Store
