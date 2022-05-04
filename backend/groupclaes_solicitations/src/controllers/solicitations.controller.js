@@ -73,9 +73,7 @@ exports.post = async (request, reply) => {
 exports.postFile = async (request, reply) => {
   try {
     const data = await request.file()
-    const _fn = validatePath(data.filename, config.dataPath + 'data/temp/')
-
-    fs.writeFileSync(_fn, await data.toBuffer())
+    fs.writeFileSync(validatePath(data.filename, config.dataPath + 'data/temp/'), await data.toBuffer())
 
     return {
       result: true,
