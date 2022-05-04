@@ -11,13 +11,23 @@
     "email": "jamie.vangeysel@groupclaes.be",
     "url": "https://jamievangeysel.be"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
-  },
   "dependencies": {
     "@groupclaes/fastify-elastic": "^1.0.8",
     "boom": "^7.3.0",
     "fastify": "^3.27.2",
     "mssql": "^6.4.1"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1",
+    "jest-cli": "^27.4.5",
+    "nodemon": "^2.0.15"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "html"
+    ]
   }
 }
