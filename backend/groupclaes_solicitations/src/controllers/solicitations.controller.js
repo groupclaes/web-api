@@ -57,11 +57,6 @@ exports.post = async (request, reply) => {
     }
   } catch (err) {
     throw boom.boomify(err)
-    // return {
-    //   result: false,
-    //   verified: true,
-    //   error: err
-    // }
   }
 }
 
