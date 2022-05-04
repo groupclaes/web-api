@@ -1,7 +1,6 @@
 // External Dependancies
 const boom = require('boom')
 const Blogpost = require('../models/blogpostModel')
-const pcm = require('../providers/pcm')
 const { Request, Reply } = require('fastify')
 
 // @desc Get news
@@ -28,51 +27,13 @@ exports.get = async (request, reply) => {
       request.log.info({ blogpostId: id }, 'Retrieving single blogpost')
     }
 
-    if (token) {
-      request.log.warn({ token }, 'user supplied token!')
-    }
-
     const blogposts = await Blogpost.get(id, { page, itemCount, company, type, token })
 
-    if (blogposts.verified) {
-      // get meta info for all blogposts
-      for (let i = 0; i < blogposts.result.length; i++) {
-        factory(blogposts.result[i])
-      }
-      if (blogposts.extra_results) {
-        // get meta info for all extra results
-        for (let i = 0; i < blogposts.extra_results.length; i++) {
-          factory(blogposts.extra_results[i])
-        }
-      }
-
-      return blogposts
-    } else {
-      request.log.warn({}, 'User is not verified!')
-      reply
-        .status(401)
-        .send({
-          verified: false,
-          error: 'Wrong credentials'
-        })
-      return
-    }
+    if (blogposts.verified) return blogposts
+    reply
+      .status(401)
+      .send({ verified: false, error: 'Wrong credentials' })
   } catch (err) {
     throw boom.boomify(err)
-  }
-}
-
-const factory = (blogpost) => {
-  if (!blogpost.image)
-    return
-
-  /** @type {string} */
-  const image = blogpost.image.replace('https://pcm.groupclaes.be/v3/i/', '')
-    .replace('https://pcm.groupclaes.be/v3/content/', '')
-  const params = image.split('/')
-  if (params.length >= 4) {
-    const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3].replace('?', ''))
-    if (metas && metas.length > 0)
-      blogpost.meta = metas[0]
   }
 }
