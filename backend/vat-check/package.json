@@ -12,7 +12,6 @@
     "@groupclaes/fastify-elastic": "^1.0.16",
     "boom": "^7.3.0",
     "jsonwebtoken": "^8.5.1",
-    "mssql": "^5.1.5",
     "validate-vat": "^0.8.0"
   },
   "devDependencies": {
