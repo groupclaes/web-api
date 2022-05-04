@@ -2,6 +2,8 @@
 const boom = require('boom')
 const { FastifyRequest, FastifyReply } = require('fastify')
 const fs = require('fs')
+const escape = require('lodash.escape')
+const { validatePath } = require('../helper')
 
 /** Internal imports */
 const config = require('../config')
@@ -18,7 +20,7 @@ exports.post = async (request, reply) => {
 
     request.log.debug({ solicitation }, 'received solicitation')
 
-    const name = await Solicitation.getVacancyName(solicitation.vacancy || 0)
+    const name = await Solicitation.getVacancyName(escape(solicitation.vacancy) || 0)
     const title = name !== null && name !== undefined ? name.nl : 'Open sollicitatie'
     const _fn = config.dataPath + 'data/temp/' + solicitation.document
 
@@ -71,7 +73,7 @@ exports.post = async (request, reply) => {
 exports.postFile = async (request, reply) => {
   try {
     const data = await request.file()
-    const _fn = config.dataPath + 'data/temp/' + data.filename
+    const _fn = validatePath(data.filename, config.dataPath + 'data/temp/')
 
     fs.writeFileSync(_fn, await data.toBuffer())
 

@@ -1,6 +1,6 @@
 const fs = require('fs')
-
 const config = require('../config')
+const { validatePath } = require('../helper')
 
 /**
  * Get client map
@@ -15,6 +15,8 @@ exports.get = (company, old) => {
   } else {
     _fn = config.dataPath + _fn
   }
+
+  _fn = validatePath(data.filename, config.dataPath)
 
   try {
     // Check if the file exists

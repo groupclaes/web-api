@@ -1,6 +1,7 @@
 // External Dependancies
 const boom = require('boom')
 const Subscriber = require('../models/subscriber.model')
+const escape = require('lodash.escape')
 
 // @desc Get all Subscribers or by email
 // @route /distribution/subscribers/:hash
@@ -19,7 +20,8 @@ exports.get = async (req, reply) => {
 exports.post = async (req, reply) => {
   try {
     const culture = req.headers['accept-language']
-    const { email } = req.body
+    const email = escape(req.body.email || '')
+
     if (Subscriber.validateEmail(email)) {
       const result = await Subscriber.post({ email }, culture).catch(err => {
         return reply
