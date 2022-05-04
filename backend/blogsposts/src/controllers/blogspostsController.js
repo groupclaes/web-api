@@ -18,19 +18,17 @@ exports.get = async (request, reply) => {
     const itemCount = +request.query.itemCount || 24
     const company = request.query.company || 'dis'
     const type = +request.query.type || 1
-
+    // Will be removed in future releases
     const token = request.query.token
 
-    if (!id) {
-      request.log.info({ page, itemCount, company, type }, 'Retrieving all blogposts')
-    } else {
-      request.log.info({ blogpostId: id }, 'Retrieving single blogpost')
-    }
+    request.log.info({ page, itemCount, company, type, blogpostId: id }, 'Retrieving blogposts')
 
     const blogposts = await Blogpost.get(id, { page, itemCount, company, type, token })
 
-    if (blogposts.verified) return blogposts
-    reply
+    if (blogposts.verified) {
+      return blogposts
+    }
+    return reply
       .status(401)
       .send({ verified: false, error: 'Wrong credentials' })
   } catch (err) {
