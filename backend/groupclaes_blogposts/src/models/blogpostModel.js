@@ -21,12 +21,14 @@ exports.get = async (id, params) => {
       if (error) {
         return { error, verified }
       } else if (result && result.recordsets.length > 0) {
-        return await addMeta({
+        const resp = {
           error,
           verified,
           result: result.recordsets.length > 1 ? result.recordsets[1][0] : [],
           extra_results: result.recordsets.length > 2 ? result.recordsets[2][0] : []
-        })
+        }
+        await addMeta(resp)
+        return resp
       }
       return reply
         .code(500)
