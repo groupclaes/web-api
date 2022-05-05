@@ -15,7 +15,7 @@ module.exports = {
     * If the pool does exist the config is ignored (even if it was different to the one provided
     * when creating the pool)
     * @param {string} name
-    * @return {Promise.<sql.ConnectionPool>}
+    * @return {Promise<sql.ConnectionPool>}
     */
   get: async (poolName) => {
     if (!pools.has(poolName)) {
