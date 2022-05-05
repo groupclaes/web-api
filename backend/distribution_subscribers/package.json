@@ -10,7 +10,7 @@
   "author": "Jamie Vangeysel",
   "license": "MIT",
   "dependencies": {
-    "@groupclaes/fastify-elastic": "^1.0.17",
+    "@groupclaes/fastify-elastic": "^1.0.18",
     "boom": "^7.3.0",
     "lodash.escape": "^4.0.1",
     "mssql": "^6.4.1",
