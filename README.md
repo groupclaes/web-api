@@ -3,11 +3,11 @@
 # web-api
 
 ## This project contains the following API controllers:
-- /groupclaes/blogposts  ![version](https://img.shields.io/badge/version-1.0.2-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fgroupclaes%2blogposts)
-- /distribution/subscribers  ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fdistribution%2Fsubscribers)
-- /groupclaes/client-map  ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fgroupclaes%2Fclient-map)
-- /groupclaes/solicitations  ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fgroupclaes%2Fsolicitations)
-- /groupclaes/vacancies  ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fgroupclaes%2Fvacancies)
-- /openedge  ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fopenedge)
-- /stats  ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fstats)
-- /vat-check  ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fvat-check)
+- /groupclaes/blogposts ![version](https://img.shields.io/badge/version-1.0.2-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fgroupclaes%2blogposts)
+- /distribution/subscribers ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fdistribution%2Fsubscribers)
+- /groupclaes/client-map ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fgroupclaes%2Fclient-map)
+- /groupclaes/solicitations ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fgroupclaes%2Fsolicitations)
+- /groupclaes/vacancies ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fgroupclaes%2Fvacancies)
+- /openedge ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fopenedge)
+- /stats ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fstats)
+- /vat-check ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fvat-check)
