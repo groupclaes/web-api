@@ -8,8 +8,8 @@ const main = async () => {
   const fastify = new Fastify(config.wrapper)
   fastify.routeMultiple(routes)
   fastify.server.addHook('preHandler', (request, reply, next) => {
-    reply.header('Content-Security-Policy', `nosniff`)
-    reply.header('X-Content-Type-Options', `default-src 'none'`)
+    reply.header('Content-Security-Policy', `default-src 'none'`)
+    reply.header('X-Content-Type-Options', `nosniff`)
     reply.header('X-Frame-Options', `DENY`)
     reply.header('X-Xss-Protection', `1; mode=block`)
     reply.header('Referrer-Policy', `no-referrer`)
