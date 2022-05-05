@@ -1,14 +1,14 @@
 // External Dependancies
 const boom = require('boom')
 const Blogpost = require('../models/blogpostModel')
-const { Request, Reply } = require('fastify')
+const { FastifyRequest, FastifyReply } = require('fastify')
 
 // @desc Get news
 // @route GET /v1/groupclaes/blogsposts
 /**
  * 
- * @param {Request} request
- * @param {Reply} reply
+ * @param {FastifyRequest} request
+ * @param {FastifyReply} reply
  */
 exports.get = async (request, reply) => {
   try {
