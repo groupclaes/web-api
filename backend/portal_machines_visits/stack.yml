@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  backend_portal_machines_visists:
+    image: docker-registry.groupclaes.be/groupclaes_web-api-portal_machines_visists
+    environment:
+      APP_VERSION: v1
+      NODE_ENV: production
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints: [node.labels.worker == true]
+      resources:
+        reservations:
+          memory: 20M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.groweb-api-portal_machines_visists.rule=Host(`api.groupclaes.be`) && PathPrefix(`/v1/portal/machines/visists`)"
+        - "traefik.http.routers.groweb-api-portal_machines_visists.entrypoints=web"
+        - "traefik.http.services.groweb-api-portal_machines_visists.loadbalancer.server.port=80"
+    configs:
+      - source: groupclaes_web-api-portal_machines_visists
+        target: /usr/src/app/config.js
+    networks:
+      - traefik_web
+      - logging
+      - default
+      - openedge
+
+configs:
+  groupclaes_web-api-portal_machines_visists:
+    external: true
+
+networks:
+  traefik_web:
+    external: true
+  logging:
+    external: true
+  openedge:
+    external: true

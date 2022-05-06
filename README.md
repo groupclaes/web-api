@@ -11,3 +11,4 @@
 - /openedge ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fopenedge)
 - /stats ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fstats)
 - /vat-check ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fvat-check)
+- /portal/machines/visists ![version](https://img.shields.io/badge/version-1.0.0-success) ![Security headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fapi.groupclaes.be%2Fv1%2Fportal%2Fmachines%2Fvisists)
