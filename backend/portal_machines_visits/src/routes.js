@@ -9,4 +9,8 @@ module.exports = routes = [{
   method: 'POST',
   url: '',
   handler: visits.post
+}, {
+  method: 'GET',
+  url: '/customers',
+  handler: visits.getCustomers
 }]

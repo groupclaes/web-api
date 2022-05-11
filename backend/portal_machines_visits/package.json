@@ -1,6 +1,6 @@
 {
-  "name": "web-api-machines_visists",
-  "version": "1.0.0",
+  "name": "web-api-portal_machines_visists",
+  "version": "1.0.1",
   "description": "",
   "main": "src/index.js",
   "scripts": {
