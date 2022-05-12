@@ -72,6 +72,42 @@ exports.post = async (req, reply) => {
     .send(oeResponse)
 }
 
+exports.put = async (req, reply) => {
+  const user = req.query.user ?? ''
+  const company = req.query.company ?? 'MAC'
+  const test = req.query.test == true
+  const data = req.body
+
+  if (test) {
+    return reply
+      .code(502)
+      .send()
+  }
+
+  oe.configure(config.oeConnector)
+
+  const oeResponse = await oe.run('putVisitNote', [
+    user,
+    company,
+    data,
+    undefined
+  ])
+
+  if (oeResponse && oeResponse.status === 200) {
+    if (oeResponse.result) {
+      return oeResponse.result
+    } else {
+      return reply
+        .code(204)
+        .send()
+    }
+  }
+
+  return reply
+    .code(oeResponse.status)
+    .send(oeResponse)
+}
+
 exports.getCustomers = async (req, reply) => {
   const user = req.query.user ?? ''
   const company = req.query.company ?? 'MAC'
