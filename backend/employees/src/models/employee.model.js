@@ -13,7 +13,7 @@ exports.get = async (user_id, application_id) => {
       return {
         error,
         verified,
-        result: result.recordsets.length > 1 ? result.recordsets[1][0] : []
+        result: result.recordsets.length > 1 ? result.recordsets[1] : []
       }
     }
     throw new Error(error)

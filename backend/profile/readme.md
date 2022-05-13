@@ -20,6 +20,12 @@ services:
         - "traefik.http.routers.gro-sso.rule=Host(`liva.groupclaes.be`) && PathPrefix(`/v1/profile`)"
         - "traefik.http.routers.gro-sso.entrypoints=web"
         - "traefik.http.services.gro-sso.loadbalancer.server.port=80"
+    healthcheck:
+      test: wget -q --spider http://localhost/healthcheck || exit 1
+      interval: 10s
+      timeout: 5s
+      start_period: 5s
+      retries: 2
     configs:
       - source: groupclaes_web-api_profile
         target: /usr/src/app/config.js

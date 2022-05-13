@@ -19,6 +19,12 @@ services:
         - "traefik.http.routers.groweb-api-stats.rule=Host(`api.groupclaes.be`) && PathPrefix(`/v1/stats`)"
         - "traefik.http.routers.groweb-api-stats.entrypoints=web"
         - "traefik.http.services.groweb-api-stats.loadbalancer.server.port=80"
+    healthcheck:
+      test: wget -q --spider http://localhost/healthcheck || exit 1
+      interval: 10s
+      timeout: 5s
+      start_period: 5s
+      retries: 2
     configs:
       - source: groupclaes_web-api-stats
         target: /usr/src/app/config.js

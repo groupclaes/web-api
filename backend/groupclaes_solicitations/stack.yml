@@ -25,6 +25,12 @@ services:
         - "traefik.http.routers.growebapi-gro-solicitations.rule=Host(`api.groupclaes.be`) && PathPrefix(`/v1/groupclaes/solicitations`)"
         - "traefik.http.routers.growebapi-gro-solicitations.entrypoints=web"
         - "traefik.http.services.growebapi-gro-solicitations.loadbalancer.server.port=80"
+    healthcheck:
+      test: wget -q --spider http://localhost/healthcheck || exit 1
+      interval: 10s
+      timeout: 5s
+      start_period: 5s
+      retries: 2
     configs:
       - source: groupclaes_web-api-groupclaes_solicitations
         target: /usr/src/app/config.js

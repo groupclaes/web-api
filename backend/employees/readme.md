@@ -17,9 +17,15 @@ services:
           memory: 20M
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.gro-sso.rule=Host(`api.groupclaes.be`) && PathPrefix(`/v1/employees`)"
-        - "traefik.http.routers.gro-sso.entrypoints=web"
-        - "traefik.http.services.gro-sso.loadbalancer.server.port=80"
+        - "traefik.http.routers.groweb-api-employees.rule=Host(`api.groupclaes.be`) && PathPrefix(`/v1/employees`)"
+        - "traefik.http.routers.groweb-api-employees.entrypoints=web"
+        - "traefik.http.services.groweb-api-employees.loadbalancer.server.port=80"
+    healthcheck:
+      test: wget -q --spider http://localhost/healthcheck || exit 1
+      interval: 10s
+      timeout: 5s
+      start_period: 5s
+      retries: 2
     configs:
       - source: groupclaes_web-api_employees
         target: /usr/src/app/config.js

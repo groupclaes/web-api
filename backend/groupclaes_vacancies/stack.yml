@@ -19,6 +19,12 @@ services:
         - "traefik.http.routers.growebapi-gro-vacancies.rule=Host(`api.groupclaes.be`) && PathPrefix(`/v1/groupclaes/vacancies`)"
         - "traefik.http.routers.growebapi-gro-vacancies.entrypoints=web"
         - "traefik.http.services.growebapi-gro-vacancies.loadbalancer.server.port=80"
+    healthcheck:
+      test: wget -q --spider http://localhost/healthcheck || exit 1
+      interval: 10s
+      timeout: 5s
+      start_period: 5s
+      retries: 2
     configs:
       - source: groupclaes_web-api-groupclaes_vacancies
         target: /usr/src/app/config.js
