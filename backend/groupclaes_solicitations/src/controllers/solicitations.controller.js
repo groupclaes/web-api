@@ -68,6 +68,7 @@ exports.post = async (request, reply) => {
 exports.postFile = async (request, reply) => {
   try {
     const data = await request.file()
+    request.log.debug({ filename: data.filename }, `resolving path; '${config.dataPath + 'data/temp/' }'`)
     fs.writeFileSync(validatePath(data.filename, config.dataPath + 'data/temp/'), await data.toBuffer())
 
     return {

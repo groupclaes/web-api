@@ -11,7 +11,7 @@ const config = require('../config')
  * @param {FastifyRequest} request 
  * @param {FastifyReply} reply 
  */
-exports.getPhonebook = (request, reply) => {
+exports.getPhonebook = async (request, reply) => {
   try {
     oe.configure(config.oeConnector)
 

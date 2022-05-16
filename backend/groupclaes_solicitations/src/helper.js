@@ -1,14 +1,15 @@
 const root = '/usr/src/app'
 
 exports.validatePath = function (u, r) {
-  if (!r) {
+  if (r === undefined) {
     r = root
   }
   if (u.indexOf('\0') !== -1)
     throw new Error('Access denied')
 
-  if (!/^[a-z0-9]+$/.test(u))
-    throw new Error('Access denied')
+  // add an actual working regex later
+  // if (!/^[a-zA-Z0-9\-_]+$/.test(u))
+  //   throw new Error('Access denied')
 
   var p = u
 
@@ -18,8 +19,12 @@ exports.validatePath = function (u, r) {
   p = p.replace(/^[\/\\]?/, '/')
   p = p.replace(/[\/\\]\.\.[\/\\]/, '/')
 
-  var s = path.normalize(p).replace(/\\/g, '/')
-  var ps = path.join(r, s)
+  return r + p
+
+  var s = p.normalize(p).replace(/\\/g, '/')
+  var ps = p.join(r, s)
+
+  console.log('path: ', ps, r)
 
   if (ps.indexOf(r) !== 0)
     throw new Error('Access denied')
