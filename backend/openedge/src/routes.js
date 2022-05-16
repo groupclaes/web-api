@@ -1,5 +1,6 @@
 // Import controllers
 const apco = require('./controllers/apco.controller')
+const swyx = require('./controllers/swyx.controller')
 
 module.exports = routes = [{
   method: 'GET',
@@ -9,4 +10,9 @@ module.exports = routes = [{
   method: 'POST',
   url: '/apco210b',
   handler: apco.post
+},
+{
+  method: 'GET',
+  url: 'swyx/phonebook',
+  handler: swyx.getPhonebook
 }]
