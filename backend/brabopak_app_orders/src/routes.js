@@ -4,5 +4,6 @@ const orders = require('./controllers/orders.controller')
 module.exports = routes = [{
   method: 'POST',
   url: '',
-  handler: orders.post
+  handler: orders.post,
+  requiredPermissions: ['write:Brabopak.APP/orders']
 }]

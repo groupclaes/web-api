@@ -9,7 +9,7 @@ const config = require('../config')
  * @returns 
  */
 exports.post = async (request, reply) => {
-  const test = req.query.test == true
+  const test = request.query.test == true
 
   if (test) {
     return reply
