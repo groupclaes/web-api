@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  backend_brabopak_app_orders:
+    image: docker-registry.groupclaes.be/groupclaes_web-api-brabopak_app_orders
+    environment:
+      APP_VERSION: v1
+      NODE_ENV: production
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints: [node.labels.worker == true]
+      resources:
+        reservations:
+          memory: 20M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.groweb-api-brabopak_app_orders.rule=Host(`api.groupclaes.be`) && PathPrefix(`/v1/brabopak/app/orders`)"
+        - "traefik.http.routers.groweb-api-brabopak_app_orders.entrypoints=web"
+        - "traefik.http.services.groweb-api-brabopak_app_orders.loadbalancer.server.port=80"
+    healthcheck:
+      test: wget -q --spider http://localhost/healthcheck || exit 1
+      interval: 10s
+      timeout: 5s
+      start_period: 5s
+      retries: 2
+    configs:
+      - source: groupclaes_web-api-brabopak_app_orders
+        target: /usr/src/app/config.js
+    networks:
+      - traefik_web
+      - logging
+      - default
+      - openedge
+
+configs:
+  groupclaes_web-api-brabopak_app_orders:
+    external: true
+
+networks:
+  traefik_web:
+    external: true
+  logging:
+    external: true
+  openedge:
+    external: true
