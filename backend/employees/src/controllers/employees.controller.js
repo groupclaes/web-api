@@ -13,11 +13,7 @@ const { JwtPayload } = require('jsonwebtoken')
 exports.get = async (request, reply) => {
   try {
     /** @type {JwtPayload} */
-    // const token = request.token
-    // return Employee.get(token.sub)
     const applicationId = +request.params.id ?? 3
-
-    // request.log.info({ page, itemCount, company, type, blogpostId: id }, 'Retrieving blogposts')
 
     const employees = await Employee.get(0, applicationId)
 

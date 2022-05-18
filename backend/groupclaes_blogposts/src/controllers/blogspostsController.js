@@ -18,12 +18,10 @@ exports.get = async (request, reply) => {
     const itemCount = +request.query.itemCount || 24
     const company = request.query.company || 'dis'
     const type = +request.query.type || 1
-    // Will be removed in future releases
-    const token = request.query.token
 
     request.log.info({ page, itemCount, company, type, blogpostId: id }, 'Retrieving blogposts')
 
-    const blogposts = await Blogpost.get(id, { page, itemCount, company, type, token })
+    const blogposts = await Blogpost.get(id, { page, itemCount, company, type })
 
     if (blogposts.verified) {
       return blogposts

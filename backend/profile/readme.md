@@ -7,6 +7,7 @@ services:
     environment:
       NODE_ENV: production
       APP_VERSION: v1
+      CLIENT_ID: aHlNV1Y0TnpJM0
     deploy:
       mode: replicated
       replicas: 2
@@ -17,7 +18,7 @@ services:
           memory: 20M
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.gro-sso.rule=Host(`liva.groupclaes.be`) && PathPrefix(`/v1/profile`)"
+        - "traefik.http.routers.gro-sso.rule=Host(`api.groupclaes.be`) && PathPrefix(`/v1/profile`)"
         - "traefik.http.routers.gro-sso.entrypoints=web"
         - "traefik.http.services.gro-sso.loadbalancer.server.port=80"
     healthcheck:

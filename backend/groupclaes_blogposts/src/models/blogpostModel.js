@@ -10,11 +10,6 @@ exports.get = async (id, params) => {
       request.input('id', sql.Int, id)
       let sqlCommand = `EXEC GetBlogPost @id`
 
-      if (params.token) {
-        sqlCommand += `, @token`
-        request.input('token', sql.UniqueIdentifier, params.token)
-      }
-
       const result = await request.query(sqlCommand)
       const { error, verified } = result.recordset[0]
 
