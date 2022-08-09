@@ -1,4 +1,4 @@
-// External Dependancies
+// External dependencies
 const boom = require('boom')
 const { FasifyRequest, FasifyReply } = require('fastify')
 

@@ -1,11 +1,12 @@
 const sql = require('mssql')
 const db = require('../db')
 
-exports.get = async (user_id) => {
+exports.get = async (user_id, ad_user_id) => {
   try {
     const request = new sql.Request(await db.get('sapphire'))
     request.input('user_id', sql.Int, user_id)
-    const result = await request.query(`EXEC GetProfile @user_id`)
+    request.input('ad_user_id', sql.VarChar, ad_user_id)
+    const result = await request.query(`EXEC GetProfile @user_id, @ad_user_id`)
 
     const { error, verified } = result.recordset[0]
     if (verified) {

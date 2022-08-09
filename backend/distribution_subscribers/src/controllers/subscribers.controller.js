@@ -1,4 +1,4 @@
-// External Dependancies
+// External dependencies
 const boom = require('boom')
 const Subscriber = require('../models/subscriber.model')
 const escape = require('lodash.escape')
@@ -19,7 +19,7 @@ exports.get = async (req, reply) => {
 // @route POST /distribution/subscribers
 exports.post = async (req, reply) => {
   try {
-    const culture = req.headers['accept-language']
+    const culture = req.headers['accept-language'] ?? 'nl'
     const email = escape(req.body.email || '')
 
     if (Subscriber.validateEmail(email)) {

@@ -1,4 +1,4 @@
-// External Dependancies
+// External dependencies
 const boom = require('boom')
 const Blogpost = require('../models/blogpostModel')
 const { FastifyRequest, FastifyReply } = require('fastify')

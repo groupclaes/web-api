@@ -1,4 +1,4 @@
-// External Dependancies
+// External dependencies
 const boom = require('boom')
 const Profile = require('../models/profile.model')
 const { FastifyRequest, FastifyReply } = require('fastify')
@@ -14,9 +14,14 @@ exports.get = async (request, reply) => {
   try {
     /** @type {JwtPayload} */
     const token = request.token
+    const user_id = request.params.user_id
+
+    if (user_id)
+      return Profile.get(token.sub, user_id)
+
     return Profile.get(token.sub)
   } catch (err) {
-    throw boom.boomify(err)
+    throw err
   }
 }
 
@@ -70,7 +75,7 @@ exports.getTeam = async (request, reply) => {
     const token = request.token
     return Profile.getTeam(token.sub)
   } catch (err) {
-    throw boom.boomify(err)
+    throw err
   }
 }
 

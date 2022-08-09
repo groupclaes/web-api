@@ -1,4 +1,4 @@
-// External Dependancies
+// External dependencies
 const boom = require('boom')
 const Birthday = require('../models/birthday.model')
 const { FastifyRequest, FastifyReply } = require('fastify')

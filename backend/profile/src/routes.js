@@ -13,6 +13,11 @@ exports.routes = [{
   requiredPermissions: ['read:GroupClaes.Login']
 }, {
   method: 'GET',
+  url: '/:user_id',
+  handler: profileController.get,
+  requiredPermissions: ['read:GroupClaes.Login']
+}, {
+  method: 'GET',
   url: '/avatar/:hash',
   handler: profileController.getAvatar
 }, {

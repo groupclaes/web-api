@@ -193,10 +193,10 @@ sendWelcomeMail = (email, culture) => {
       html = html.replace('@RenderBody()', body + button + footer)
     } else {
       subject = `Presque terminé : confirmez votre inscription`
-      text = `Merci de l'intérêt que vous portez à nos bulletins d’information !\n\nPour finaliser votre inscription selon les règles de l'art, il vous suffit de confirmer. Ensuite, vous recevrez un e-mail de notre part 1 à 2 fois par mois au maximum.`
+      text = `Merci de l'intérêt que vous portez à nos bulletins d'information !\n\nPour finaliser votre inscription selon les règles de l'art, il vous suffit de confirmer. Ensuite, vous recevrez un e-mail de notre part 1 à 2 fois par mois au maximum.`
 
       html = html.replace('@RenderTitle()', 'Confirmez votre inscription')
-      const body = `Merci de l'intérêt que vous portez à nos bulletins d’information !<br><br>Pour finaliser votre inscription selon les règles de l'art, il vous suffit de confirmer. Ensuite, vous recevrez un e-mail de notre part 1 à 2 fois par mois au maximum.`
+      const body = `Merci de l'intérêt que vous portez à nos bulletins d'information !<br><br>Pour finaliser votre inscription selon les règles de l'art, il vous suffit de confirmer. Ensuite, vous recevrez un e-mail de notre part 1 à 2 fois par mois au maximum.`
       button = button.replace('@Button.Text', 'Confirmez votre inscription')
       const footer = `Si vous avez des questions ou si vous avez besoin d'aide pour une raison quelconque, veuillez nous contacter à l'adresse <a href="mailto:info@claes-distribution.be" style="color:#40ab86;text-decoration:underline;">info@claes-distribution.be</a>.<br><br>Bien à vous,<br>L'équipe de Claes Distribution`
       html = html.replace('@RenderHeader()', 'Presque terminé : confirmez votre inscription ✔')
