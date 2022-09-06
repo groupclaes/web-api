@@ -23,6 +23,8 @@ exports.get = async (req, reply) => {
 
   if (oeResponse && oeResponse.status === 200) {
     if (oeResponse.result) {
+      if (oeResponse.result.id)
+        return [oeResponse.result]
       return oeResponse.result
     } else {
       return reply
