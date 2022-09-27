@@ -19,7 +19,9 @@ exports.get = async (req, reply) => {
     company,
     '0',
     undefined
-  ])
+  ], {
+    tw: -1
+  })
 
   req.log.info('aptr100b result', { oeResponse })
 
