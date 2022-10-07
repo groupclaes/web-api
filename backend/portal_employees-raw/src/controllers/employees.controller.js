@@ -2,7 +2,7 @@ const oe = require('@groupclaes/oe-connector')
 const config = require('../config')
 
 exports.get = async (req, reply) => {
-  const user_id = req.param.id
+  const user_id = req.params.id
 
   const user = req.query.user ?? ''
   const test = req.query.test == true
