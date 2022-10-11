@@ -9,4 +9,8 @@ module.exports = routes = [{
   method: 'GET',
   url: '/:id',
   handler: employees.get
+}, {
+  method: 'PUT',
+  url: '/:id',
+  handler: employees.put
 }]
