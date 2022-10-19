@@ -1,5 +1,4 @@
 /** External imports */
-const boom = require('boom')
 const { FastifyRequest, FastifyReply } = require('fastify')
 const fs = require('fs')
 const escape = require('lodash.escape')
@@ -21,9 +20,8 @@ exports.post = async (request, reply) => {
     request.log.debug({ solicitation }, 'received solicitation')
 
     const name = await Solicitation.getVacancyName(escape(solicitation.vacancy) || 0)
-    const title = name !== null && name !== undefined ? name.nl : 'Open sollicitatie'
+    const title = name && name.title ? name.title.nl : 'Open sollicitatie'
     const _fn = config.dataPath + 'data/temp/' + solicitation.document
-
     fs.accessSync(_fn, fs.constants.F_OK)
 
     const { email, prename, surname, phone } = solicitation
@@ -56,7 +54,9 @@ exports.post = async (request, reply) => {
       error: null
     }
   } catch (err) {
-    throw boom.boomify(err)
+    return reply
+      .status(500)
+      .send(err)
   }
 }
 
@@ -77,6 +77,8 @@ exports.postFile = async (request, reply) => {
       error: null
     }
   } catch (err) {
-    throw boom.boomify(err)
+    return reply
+      .status(500)
+      .send(err)
   }
 }
