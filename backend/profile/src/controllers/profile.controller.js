@@ -41,7 +41,7 @@ exports.getAvatar = async (request, reply) => {
         return reply
           .code(200)
           .header('Content-disposition', 'attachment; filename=avatar-' + hash + '.png')
-          .header(' Cache-Control', `public, max-age=7200, must-revalidate`)
+          .header('Cache-Control', `public, max-age=7200, must-revalidate`)
           .type('image/png')
           .send(avatarBytes)
       }
