@@ -9,7 +9,7 @@ exports.getDashboard = async (user_id) => {
     request.input('user_id', sql.Int, user_id)
     const result = await request.query(`EXEC usp_getAnalyticsDashboard @user_id`)
 
-    if (result.recordsets.length == 7) {
+    if (result.recordsets.length == 8) {
       return {
         uniqueVisitors: {
           data: result.recordsets[0]
@@ -25,6 +25,9 @@ exports.getDashboard = async (user_id) => {
         registrations: {
           data: result.recordsets[5],
           card: result.recordsets[6]
+        },
+        visitorProductViews: {
+          data: result.recordsets[7]
         }
       }
     }
