@@ -10,18 +10,22 @@ const { validatePath } = require('../helper')
 exports.get = (company, old) => {
   let _fn = resolveFileName(company, old)
 
+  console.log('filename: ', _fn)
+
   if (_fn === null) {
+    console.log('No file name specified! Please specify company name.')
     throw new Error('No file name specified! Please specify company name.')
   } else {
     _fn = config.dataPath + _fn
   }
 
-  _fn = validatePath(data.filename, config.dataPath)
-
   try {
+    _fn = validatePath(resolveFileName(company, old).split('.')[0], config.dataPath)
+    
     // Check if the file exists
     fs.accessSync(_fn, fs.constants.R_OK)
     // Read the file
+    console.log('can read/write')
     const content = fs.readFileSync(_fn, 'ucs2').toString()
 
     const result = content.replace(/"/gi, '').trim().split(/\r?\n/).map(line => {

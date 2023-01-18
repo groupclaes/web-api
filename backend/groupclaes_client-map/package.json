@@ -9,10 +9,8 @@
   "author": "Jamie Vangeysel",
   "license": "MIT",
   "dependencies": {
-    "@groupclaes/fastify-elastic": "^1.0.19",
-    "boom": "^7.3.0",
-    "jsonwebtoken": "^8.5.1",
-    "mssql": "^6.4.1"
+    "@groupclaes/fastify-elastic": "^2.0.4",
+    "fastify": "^4.11.0"
   },
   "devDependencies": {
     "jest": "^27.5.1",

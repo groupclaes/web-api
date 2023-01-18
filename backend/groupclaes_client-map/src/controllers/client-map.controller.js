@@ -1,5 +1,4 @@
 /** External imports */
-const boom = require('boom')
 const { FastifyRequest, FastifyReply } = require('fastify')
 
 /** Internal imports */
@@ -11,6 +10,7 @@ const ClientMap = require('../models/client-map.model')
  * @param {FastifyReply} reply 
  */
 exports.get = async (request, reply) => {
+  console.log('yuyu')
   const old = request.query.old === 'true'
   try {
     const clientMap = ClientMap.get(request.query.company ?? 'GRO', old)
@@ -27,6 +27,8 @@ exports.get = async (request, reply) => {
         .send()
     }
   } catch (err) {
-    throw boom.boomify(err)
+    return reply
+      .code(500)
+      .send(err)
   }
 }
