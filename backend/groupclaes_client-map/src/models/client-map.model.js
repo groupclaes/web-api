@@ -20,8 +20,8 @@ exports.get = (company, old) => {
   }
 
   try {
-    _fn = validatePath(resolveFileName(company, old).split('.')[0], config.dataPath)
-    
+    _fn = validatePath(resolveFileName(company, old), config.dataPath)
+
     // Check if the file exists
     fs.accessSync(_fn, fs.constants.R_OK)
     // Read the file

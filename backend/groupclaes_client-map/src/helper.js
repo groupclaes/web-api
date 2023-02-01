@@ -1,3 +1,6 @@
+'use strict'
+const path = require('path')
+
 const root = '/usr/src/app'
 
 exports.validatePath = function (u, r) {
@@ -7,7 +10,7 @@ exports.validatePath = function (u, r) {
   if (u.indexOf('\0') !== -1)
     throw new Error('Access denied')
 
-  if (!/^[a-z0-9]+$/.test(u))
+  if (!/^[a-zA-Z0-9-_]+$/.test(u.split('.')[0]))
     throw new Error('Access denied')
 
   var p = u
