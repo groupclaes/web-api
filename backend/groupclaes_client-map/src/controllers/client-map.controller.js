@@ -10,7 +10,6 @@ const ClientMap = require('../models/client-map.model')
  * @param {FastifyReply} reply 
  */
 exports.get = async (request, reply) => {
-  console.log('yuyu')
   const old = request.query.old === 'true'
   try {
     const clientMap = ClientMap.get(request.query.company ?? 'GRO', old)

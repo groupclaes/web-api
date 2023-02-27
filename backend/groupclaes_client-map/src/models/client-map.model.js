@@ -26,7 +26,7 @@ exports.get = (company, old) => {
     fs.accessSync(_fn, fs.constants.R_OK)
     // Read the file
     console.log('can read/write')
-    const content = fs.readFileSync(_fn, 'ucs2').toString()
+    const content = fs.readFileSync(_fn, 'utf8').toString()
 
     const result = content.replace(/"/gi, '').trim().split(/\r?\n/).map(line => {
       const items = line.split(';')
