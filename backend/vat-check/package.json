@@ -11,7 +11,7 @@
   "dependencies": {
     "@groupclaes/fastify-elastic": "^1.0.19",
     "boom": "^7.3.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "validate-vat": "^0.8.0"
   },
   "devDependencies": {
