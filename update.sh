@@ -1,28 +1,15 @@
-cd ~/development/groupclaes/web-api
+# list directories
+for dir in ~/development/groupclaes/web-api/backend/*/
+do
+  # remove the trailing "/"
+  dir=${dir%*/}
+  
+  # print directory
+  echo "updating ${dir}"
 
-cd ./backend/distribution_subscribers
-npm update
+  # change to dir
+  cd ${dir}
 
-cd ../groupclaes_blogposts
-npm update
-
-cd ../groupclaes_client-map
-npm update
-
-cd ../groupclaes_solicitations
-npm update
-
-cd ../groupclaes_vacancies
-npm update
-
-cd ../openedge
-npm update
-
-cd ../profile
-npm update
-
-cd ../stats
-npm update
-
-cd ../vat-check
-npm update
+  # run npm update command
+  npm update
+done

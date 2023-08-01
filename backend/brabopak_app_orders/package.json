@@ -12,14 +12,14 @@
     "url": "https://jamievangeysel.be"
   },
   "dependencies": {
-    "@groupclaes/fastify-authhandler": "^1.0.1",
-    "@groupclaes/fastify-elastic": "^1.0.19",
-    "@groupclaes/oe-connector": "^1.0.11"
+    "@groupclaes/fastify-authhandler": "^1.0.6",
+    "@groupclaes/fastify-elastic": "^1.1.1",
+    "@groupclaes/oe-connector": "^1.2.5"
   },
   "devDependencies": {
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.22"
   },
   "jest": {
     "collectCoverage": true,

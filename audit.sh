@@ -10,6 +10,6 @@ do
   # change to dir
   cd ${dir}
 
-  # run build script
-  sh ./build.sh
+  # run npm update command
+  npm audit fix
 done
