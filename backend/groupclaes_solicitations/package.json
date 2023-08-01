@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "node src/index.js"
   },
   "author": "Jamie Vangeysel",
   "license": "MIT",
@@ -12,15 +12,14 @@
     "@fastify/multipart": "^7.7.3",
     "@groupclaes/fastify-elastic": "^2.0.4",
     "fastify": "^4.21.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.1",
     "lodash.escape": "^4.0.1",
     "mssql": "^6.4.1",
     "nodemailer": "^6.9.4"
   },
   "devDependencies": {
     "jest": "^27.5.1",
-    "jest-cli": "^27.5.1",
-    "nodemon": "^2.0.22"
+    "jest-cli": "^27.5.1"
   },
   "jest": {
     "collectCoverage": true,
