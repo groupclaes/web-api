@@ -11,5 +11,5 @@ do
   cd ${dir}
 
   # run npm update command
-  npm update --save
+  npm upgrade --save
 done
