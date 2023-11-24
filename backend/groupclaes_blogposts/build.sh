@@ -1,7 +1,6 @@
 #!/bin/bash
 docker_tag="latest"
 docker_company="groupclaes"
-docker_reg="docker-registry.groupclaes.be"
 PACKAGE_VERSION=$(cat package.json \
   | grep version \
   | head -1 \
@@ -15,6 +14,6 @@ PACKAGE_NAME=$(cat package.json \
   | sed 's/[",]//g' \
   | tr -d '[[:space:]]')
 
-echo "building docker images ${docker_reg}/${docker_company}_${PACKAGE_NAME}:${docker_tag} and ${docker_reg}/${docker_company}_${PACKAGE_NAME}:${PACKAGE_VERSION}"
+echo "building docker images ${docker_company}/${PACKAGE_NAME}:${docker_tag} and ${docker_company}/${PACKAGE_NAME}:${PACKAGE_VERSION}"
 
-docker build -t "${docker_reg}/${docker_company}_${PACKAGE_NAME}:${docker_tag}" -t "${docker_reg}/${docker_company}_${PACKAGE_NAME}:${PACKAGE_VERSION}" -f Dockerfile . && docker push "${docker_reg}/${docker_company}_${PACKAGE_NAME}:${docker_tag}" && docker push "${docker_reg}/${docker_company}_${PACKAGE_NAME}:${PACKAGE_VERSION}"
+docker build -t "${docker_company}/${PACKAGE_NAME}:${docker_tag}" -t "${docker_company}/${PACKAGE_NAME}:${PACKAGE_VERSION}" -f Dockerfile . && docker push "${docker_company}/${PACKAGE_NAME}:${docker_tag}" && docker push "${docker_company}/${PACKAGE_NAME}:${PACKAGE_VERSION}"
