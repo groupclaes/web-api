@@ -7,10 +7,10 @@ exports.get = async (id, params) => {
     const request = new sql.Request(await db.get('sapphire'))
 
     if (id) {
+      console.log(params)
       request.input('id', sql.Int, id)
-      let sqlCommand = `EXEC GetBlogPost @id`
-
-      const result = await request.query(sqlCommand)
+      request.input('token', sql.UniqueIdentifier, params.token)
+      const result = await request.execute('GetBlogPost')
       const { error, verified } = result.recordset[0]
 
       if (error) {
