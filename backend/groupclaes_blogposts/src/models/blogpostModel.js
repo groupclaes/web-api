@@ -7,7 +7,6 @@ exports.get = async (id, params) => {
     const request = new sql.Request(await db.get('sapphire'))
 
     if (id) {
-      console.log(params)
       request.input('id', sql.Int, id)
       request.input('token', sql.UniqueIdentifier, params.token)
       const result = await request.execute('GetBlogPost')
@@ -64,8 +63,7 @@ const factory = async (blogpost) => {
     return
 
   /** @type {string} */
-  const image = blogpost.image.replace('https://pcm.groupclaes.be/v3/i/', '')
-    .replace('https://pcm.groupclaes.be/v3/content/', '')
+  const image = blogpost.image.replace(/https\:\/\/pcm\.groupclaes\.be\/v([0-9].*)\/(i|content)\//, '')
   const params = image.split('/')
   if (params.length >= 4) {
     const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3].replace('?', ''))
