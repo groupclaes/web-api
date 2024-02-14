@@ -1,1 +1,0 @@
-EXEC usp_getAnalyticsDashboard
