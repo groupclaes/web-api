@@ -64,9 +64,12 @@ const factory = async (blogpost) => {
 
   /** @type {string} */
   const image = blogpost.image.replace(/https\:\/\/pcm\.groupclaes\.be\/v([0-9].*)\/(i|content)\//, '')
+    .replace('{lang}', '')
+    .replace('?', '')
   const params = image.split('/')
+  console.log(image, params)
   if (params.length >= 4) {
-    const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3].replace('?', ''))
+    const metas = await pcm.getMetaInformation(params[0], params[1], params[2], params[3])
     if (metas && metas.length > 0)
       blogpost.meta = metas[0]
   }
