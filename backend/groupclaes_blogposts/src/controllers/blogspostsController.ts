@@ -19,7 +19,7 @@ declare module 'fastify' {
 
 
 export default async function (fastify: FastifyInstance) {
-  fastify.get('/:id', async (request: FastifyRequest<{
+  fastify.get('/:id?', async (request: FastifyRequest<{
     Params: {
       id: number
     },
