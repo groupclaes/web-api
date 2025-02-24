@@ -12,3 +12,4 @@ package-lock.json
 Dockerfile
 
 src/config.js
+#config.js

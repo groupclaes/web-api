@@ -16,4 +16,4 @@ PACKAGE_NAME=$(cat package.json \
 
 echo "building docker images ${docker_company}/${PACKAGE_NAME}:${docker_tag} and ${docker_company}/${PACKAGE_NAME}:${PACKAGE_VERSION}"
 
-docker build -t "${docker_company}/${PACKAGE_NAME}:${docker_tag}" -t "${docker_company}/${PACKAGE_NAME}:${PACKAGE_VERSION}" -f Dockerfile . && docker push "${docker_company}/${PACKAGE_NAME}:${docker_tag}" && docker push "${docker_company}/${PACKAGE_NAME}:${PACKAGE_VERSION}"
+docker buildx build --platform=linux/amd64 -t "${docker_company}/${PACKAGE_NAME}:${docker_tag}" -t "${docker_company}/${PACKAGE_NAME}:${PACKAGE_VERSION}" -f Dockerfile --sbom=true --provenance=true --push .
