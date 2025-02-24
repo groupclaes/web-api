@@ -1,31 +1,18 @@
-#
-# ---- Dependencies ----
-FROM docker-registry.groupclaes.be/node-npm AS dependencies
-
-# copy project file
-COPY package.json .
-
-# install node packages
-RUN npm install --only=production
-
-# copy production node_modules aside
-RUN cp -R node_modules prod_node_modules
-
-#
-# from base image node
-FROM docker-registry.groupclaes.be/node-base AS release
-
-# set current user to node
-USER node
-
-# change the working directory to new exclusive app folder
+# ---- Build ----
+FROM groupclaes/esbuild:v0.25.0 AS deps
 WORKDIR /usr/src/app
 
-# copy production node_modules
-COPY --chown=node:node --from=dependencies /root/npm/prod_node_modules ./node_modules
+COPY package.json ./package.json
+COPY .npmrc ./.npmrc
 
-# copy other source files as well
-COPY --chown=node:node ./src .
+RUN npm install --omit=dev
+
+FROM groupclaes/node:22 AS release
+USER node
+WORKDIR /usr/src/app
+
+COPY --from=deps /usr/src/app ./
+COPY ./src .
 
 # command to run when intantiate an image
-CMD ["node","index.js"]
+CMD ["node","./index.js"]
