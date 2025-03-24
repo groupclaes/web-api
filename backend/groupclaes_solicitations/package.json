@@ -14,7 +14,7 @@
     "fastify": "^4.21.0",
     "jsonwebtoken": "^9.0.1",
     "lodash.escape": "^4.0.1",
-    "mssql": "^6.4.1",
+    "mssql": "^8.0.0",
     "nodemailer": "^6.9.4"
   },
   "devDependencies": {
