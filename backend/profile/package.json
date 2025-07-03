@@ -2,17 +2,20 @@
   "name": "web-api_profile",
   "version": "1.0.12",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "npm run dev"
+    "build": "esbuild ./index.ts --bundle --platform=node --minify --packages=external --external:'./config' --outfile=index.min.js"
   },
   "author": "Jamie Vangeysel",
   "license": "MIT",
   "dependencies": {
-    "@groupclaes/fastify-authhandler": "^1.0.6",
-    "@groupclaes/fastify-elastic": "^2.0.4",
-    "boom": "^7.3.0",
-    "jsonwebtoken": "^9.0.1",
-    "mssql": "^6.4.1"
+    "@groupclaes/fastify-elastic": "^4.4.1",
+    "fastify": "^5.4.0",
+    "jose": "^6.0.11",
+    "mssql": "^11.0.1"
+  },
+  "devDependencies": {
+    "@types/mssql": "^9.1.7",
+    "esbuild": "^0.25.5"
   }
 }
