@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@groupclaes/fastify-elastic": "^2.0.4",
-    "fastify": "^4.21.0",
+    "fastify": "^4.26.0",
     "jsonwebtoken": "^9.0.1"
   },
   "devDependencies": {
