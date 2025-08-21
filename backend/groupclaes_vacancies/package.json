@@ -12,7 +12,7 @@
     "@groupclaes/fastify-elastic": "^1.1.1",
     "boom": "^7.3.0",
     "jsonwebtoken": "^9.0.1",
-    "mssql": "^6.4.1"
+    "mssql": "^10.0.1"
   },
   "devDependencies": {
     "jest": "^27.5.1",
