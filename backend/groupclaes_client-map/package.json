@@ -9,8 +9,8 @@
   "author": "Jamie Vangeysel",
   "license": "MIT",
   "dependencies": {
-    "@groupclaes/fastify-elastic": "^2.0.4",
-    "fastify": "^4.21.0",
+    "@groupclaes/fastify-elastic": "^5.0.0",
+    "fastify": "^5.7.3",
     "jsonwebtoken": "^9.0.1"
   },
   "devDependencies": {
