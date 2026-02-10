@@ -10,11 +10,11 @@
   "license": "MIT",
   "dependencies": {
     "@fastify/multipart": "^7.7.3",
-    "@groupclaes/fastify-elastic": "^2.0.4",
-    "fastify": "^4.26.0",
+    "@groupclaes/fastify-elastic": "^5.0.0",
+    "fastify": "^5.7.3",
     "jsonwebtoken": "^9.0.1",
     "lodash.escape": "^4.0.1",
-    "mssql": "^6.4.1",
+    "mssql": "^8.0.0",
     "nodemailer": "^6.9.4",
     "pino": "^9.6.0"
   },
